@@ -1,0 +1,33 @@
+.my-todolist {
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.my-task {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 20px 0;   
+    font-size: 16px;
+    border-color: grey;
+    border-width: 2px;
+}
+
+
+.my-todolist-submit-button{
+    padding: 10px;
+    font-size: 16px;   
+    border: 2px solid #2e86c1;
+    background-color: #2e86c1;
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer; 
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.my-todolist-submit-button:hover {
+    background-color: white;
+    border: 2px solid #2e86c1;
+    color: black;  
+}

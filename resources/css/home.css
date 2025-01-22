@@ -1,0 +1,25 @@
+.my-home {
+    position: relative;
+    padding: 50px;
+    text-align: center;
+    outline: 1px solid red;
+}
+
+.my-home-title {
+    margin-top: 40px; /* Moves the title down */
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.search-todotask {
+    margin-top: 20px;
+}
+
+.search-todotask input {
+    width: 60%; /* Increase input width */
+    max-width: 500px;
+    padding: 10px;
+    font-size: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
