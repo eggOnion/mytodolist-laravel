@@ -4,7 +4,7 @@ import axios from 'axios';
 import "../../css/displayToDoList.css";
 
 function DisplayToDoList() {
-    const [data, setData] = useState({ tasks: []});
+    const [data, setData] = useState({ tasks: [] });
     const [loading, setLoading] = useState(true);
     const [editingTask, setEditingTask] = useState(null);  // Track the task being edited
     const [newTaskText, setNewTaskText] = useState('');  // Track the new text for the task
@@ -14,7 +14,13 @@ function DisplayToDoList() {
     useEffect(() => {
         // Fetch tasks from the backend
         axios
-            .get('https://mytodolist-laravel.vercel.app/api/data')
+            .get('https://mytodolist-laravel.vercel.app/data', {
+                headers: {
+                    accept: 'application/json',
+                    'X-CSRF-TOKEN': csrfToken, // Use the CSRF token
+                },
+                withCredentials: true,
+            })
             .then((response) => {
                 setData(response.data);
                 setLoading(false);
@@ -28,9 +34,9 @@ function DisplayToDoList() {
     if (loading) {
         return <p>Loading...</p>;
     }
-    
+
     const combinedData = data.tasks.map((task) => ({
-        task: task.task,    
+        task: task.task,
         taskId: task.id,
     }));
 
@@ -43,7 +49,7 @@ function DisplayToDoList() {
     // Submit the edited task
     const handleUpdate = async (taskId) => {
         try {
-            const response = await axios.put(`https://mytodolist-laravel.vercel.app/api/tasks/${taskId}`, {
+            const response = await axios.put(`https://mytodolist-laravel.vercel.app/tasks/${taskId}`, {
                 task: newTaskText,
             });
             const updatedTask = response.data;
@@ -63,7 +69,7 @@ function DisplayToDoList() {
     // Handle task deletion
     const handleDelete = async (taskId) => {
         try {
-            await axios.delete(`https://mytodolist-laravel.vercel.app/api/tasks/${taskId}`);
+            await axios.delete(`https://mytodolist-laravel.vercel.app/tasks/${taskId}`);
             setData((prevState) => ({
                 ...prevState,
                 tasks: prevState.tasks.filter((task) => task.id !== taskId),
@@ -79,9 +85,9 @@ function DisplayToDoList() {
             <table>
                 <thead>
                     <tr>
-                        <th style={{textAlign: "center"}}>No.</th>
-                        <th style={{textAlign: "center"}}>Task</th>                     
-                        <th style={{textAlign: "center"}}>Modifications</th>                     
+                        <th style={{ textAlign: "center" }}>No.</th>
+                        <th style={{ textAlign: "center" }}>Task</th>
+                        <th style={{ textAlign: "center" }}>Modifications</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -91,14 +97,14 @@ function DisplayToDoList() {
                             <td>
                                 {editingTask === item.taskId ? (
                                     <input
-                                    type="text"
-                                    value={newTaskText}
-                                    onChange={(e) => setNewTaskText(e.target.value)}
+                                        type="text"
+                                        value={newTaskText}
+                                        onChange={(e) => setNewTaskText(e.target.value)}
                                     />
                                 ) : (
                                     item.task
                                 )}
-                            </td>                       
+                            </td>
                             <td>
                                 {editingTask === item.taskId ? (
                                     <button className="my-modifications-buttons" onClick={() => handleUpdate(item.taskId)}>
