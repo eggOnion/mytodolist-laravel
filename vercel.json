@@ -12,7 +12,7 @@
         "APP_ENV": "production",
         "APP_DEBUG": "true",
         "APP_URL": "https://yourprojectdomain.com",
-        "APP_KEY": "base64:rb/ZLl38OF78hClV4FNRUjaB5o3lx2+rfmgOOj12Cu8=",
+        "APP_KEY": "@APP_KEY",
 
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",

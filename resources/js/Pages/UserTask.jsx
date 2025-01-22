@@ -19,7 +19,7 @@ function App() {
             const response = await axios.post('https://mytodolist-laravel.vercel.app/todolist', { task: text },
                 {
                     headers: {accept: 'application/json',
-                        'X-CSRF-TOKEN': csrfToken, // Use the CSRF token
+                        'X-XSRF-TOKEN': csrfToken,
                     },
                     withCredentials: true,
                 }

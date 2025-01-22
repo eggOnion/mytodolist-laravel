@@ -14,7 +14,7 @@ function DisplayToDoList() {
     useEffect(() => {
         // Fetch tasks from the backend
         axios
-            .get('https://mytodolist-laravel.vercel.app/data', {
+            .get('http://localhost:8000/data', {
                 headers: {
                     accept: 'application/json',
                     'X-CSRF-TOKEN': csrfToken, // Use the CSRF token
