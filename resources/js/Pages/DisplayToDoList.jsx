@@ -9,10 +9,12 @@ function DisplayToDoList() {
     const [editingTask, setEditingTask] = useState(null);  // Track the task being edited
     const [newTaskText, setNewTaskText] = useState('');  // Track the new text for the task
 
+    const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+
     useEffect(() => {
         // Fetch tasks from the backend
         axios
-            .get('https://mytodolist-backend-eight.vercel.app/api/data')
+            .get('https://mytodolist-laravel.vercel.app/api/data')
             .then((response) => {
                 setData(response.data);
                 setLoading(false);
@@ -41,7 +43,7 @@ function DisplayToDoList() {
     // Submit the edited task
     const handleUpdate = async (taskId) => {
         try {
-            const response = await axios.put(`https://mytodolist-backend-eight.vercel.app/api/tasks/${taskId}`, {
+            const response = await axios.put(`https://mytodolist-laravel.vercel.app/api/tasks/${taskId}`, {
                 task: newTaskText,
             });
             const updatedTask = response.data;
@@ -61,7 +63,7 @@ function DisplayToDoList() {
     // Handle task deletion
     const handleDelete = async (taskId) => {
         try {
-            await axios.delete(`https://mytodolist-backend-eight.vercel.app/api/tasks/${taskId}`);
+            await axios.delete(`https://mytodolist-laravel.vercel.app/api/tasks/${taskId}`);
             setData((prevState) => ({
                 ...prevState,
                 tasks: prevState.tasks.filter((task) => task.id !== taskId),

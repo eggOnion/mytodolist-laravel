@@ -6,11 +6,11 @@ use App\Http\Controllers\ToDoListController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::post('api/todolist', [ToDoListController::class, 'store']);
-Route::get('api/data', [DataController::class, 'fetchAllData']);
+Route::post('/api/todolist', [ToDoListController::class, 'store']);
+Route::get('/api/data', [DataController::class, 'fetchAllData']);
 
-Route::put('api/tasks/{task}', [TaskController::class, 'update']);
-Route::delete('api/tasks/{task}', [TaskController::class, 'destroy']);
+Route::put('/api/tasks/{task}', [TaskController::class, 'update']);
+Route::delete('/api/tasks/{task}', [TaskController::class, 'destroy']);
 
 
 // Route::post('/api/todolist', [ToDoListController::class, 'store']);
