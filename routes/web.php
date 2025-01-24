@@ -17,11 +17,11 @@ use Inertia\Inertia;
 // });
 @csrf_token();
 
-Route::post('/todolist', [ToDoListController::class, 'store']);
-Route::get('/data', [DataController::class, 'fetchAllData']);
+Route::post('api/todolist', [ToDoListController::class, 'store']);
+Route::get('api/data', [DataController::class, 'fetchAllData']);
 
-Route::put('/tasks/{task}', [TaskController::class, 'update']);
-Route::delete('/tasks/{task}', [TaskController::class, 'destroy']);
+Route::put('api/tasks/{task}', [TaskController::class, 'update']);
+Route::delete('api/tasks/{task}', [TaskController::class, 'destroy']);
 
 
 Route::get('/', function () {
